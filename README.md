@@ -2,7 +2,7 @@
 # TimeRegistrationDemo
 
 
-# Design goals
+# Design goals 2018
 
 ## Technologies
  - C#
