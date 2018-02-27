@@ -1,10 +1,14 @@
 
 # TimeRegistrationDemo
 
+## Installation Requirements
 
-# Design goals 2018
+See [Installation Guide](Installation Guide.md)
 
-## Technologies
+
+## Design goals 2018
+
+### Technologies
  - C#
  - Use .NET Core
  - Use ASPNETCore
@@ -14,7 +18,7 @@
  - Visual Studio 2017 Community Edition
  - Windows 10
  - Git
-## Design methodologies
+### Design methodologies
  - CQRS
  - DDD
  - REST API
@@ -24,7 +28,7 @@
  - Design Patterns
  - Logging & Exception handling
 
-# Future Ideas
+## Future Ideas
  - Use Azure as hoster
  - In depth tutorials for some subjects:
 	 - Experiences with code migration ( Filip)
