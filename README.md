@@ -6,21 +6,22 @@
 See [Installation Guide](Installation%20Guide.md)
 
 ## Business case
- - Web
- 	- Login as employee
-		- Register timesheet
-	 	- Register holiday
- 	- Login as employer 
- 		- Accept/Decline timesheet of employees
-		- Accept/Decline holiday request of employees
-		- Reports
- 	- Login as system administrator
-		- Change categories (application development, support,...)  
- 
+
+* Web
+  * Login as employee
+  * Register timesheet
+  * Register holiday
+* Login as employer
+  * Accept/Decline timesheet of employees
+  * Accept/Decline holiday request of employees
+  * Reports
+* Login as system administrator
+  * Change categories (application development, support,...)
 
 ## Design goals 2018
 
 ### Technologies
+
  - C#
  - Use .NET Core
  - Use ASPNETCore
@@ -34,11 +35,13 @@ See [Installation Guide](Installation%20Guide.md)
  - [CQRS](CQRS%20Basics.md)
  - DDD
  - REST API
+ - IOC containers ( Windsor, Unity, Autofac,...)
  - Source control choices
  - Kanban
  - Scrum
  - Design Patterns
  - Logging & Exception handling
+ - Minimum Viable Product
 
 ## Future Ideas
  - Use Azure as hoster
