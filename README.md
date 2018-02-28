@@ -31,7 +31,7 @@ See [Installation Guide](Installation%20Guide.md)
  - Windows 10
  - Git
 ### Design methodologies
- - CQRS
+ - [CQRS](CQRS%20Basics.md)
  - DDD
  - REST API
  - Source control choices
