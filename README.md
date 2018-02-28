@@ -5,6 +5,18 @@
 
 See [Installation Guide](Installation%20Guide.md)
 
+## Business case
+ - Web
+ 	- Login as employee
+		- Register timesheet
+	 	- Register holiday
+ 	- Login as employer 
+ 		- Accept/Decline timesheet of employees
+		- Accept/Decline holiday request of employees
+		- Reports
+ 	- Login as system administrator
+		- Change categories (application development, support,...)  
+ 
 
 ## Design goals 2018
 
