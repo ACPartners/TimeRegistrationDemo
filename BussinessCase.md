@@ -10,31 +10,33 @@ We don't want to drive the concept too far but we still want to have some things
 ### Entities
 
 #### User
- Id (int)
- FirstName(string)
- LastName(string)
- UserRoles (1 to many)
 
- #### UserRoles
- Id (string)
- TypeDesc (string)
+ Id (int)  
+ FirstName(string)  
+ LastName(string)  
+ UserRoles (1 to many)  
 
-#### HolidayRequests
-Id (long)
-From (date)
-To   (date)
-Remarks ( string)
-HolidayType
-IsApproved  (bool)
-DisApprovedReason (string)
+#### UserRole
+
+ Id (string)  
+ TypeDesc (string)  
+
+#### HolidayRequest
+
+Id (long)  
+From (date)  
+To   (date)  
+Remarks ( string)  
+HolidayType  
+IsApproved  (bool)  
+DisApprovedReason (string)  
 
 #### HolidayType
-Id (string)
-Description (string)
+
+Id (string)  
+Description (string)  
 
 
-
-####
 ### Web
 
 #### Functionalities
