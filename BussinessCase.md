@@ -7,11 +7,40 @@ We don't want to drive the concept too far but we still want to have some things
 
 ## Bussiness Domain
 
+### Entities
+
+#### User
+ Id (int)
+ FirstName(string)
+ LastName(string)
+ UserRoles (1 to many)
+
+ #### UserRoles
+ Id (string)
+ TypeDesc (string)
+
+#### HolidayRequests
+Id (long)
+From (date)
+To   (date)
+Remarks ( string)
+HolidayType
+IsApproved  (bool)
+DisApprovedReason (string)
+
+#### HolidayType
+Id (string)
+Description (string)
+
+
+
+####
 ### Web
 
 #### Functionalities
 
 ##### Login
+
 - Employee
 - Employer
 - System administrator

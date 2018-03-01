@@ -18,7 +18,7 @@ See [Installation Guide](Installation%20Guide.md)
  - Sql server 2016 (localdb and real server)
  - Visual Studio 2017 Community Edition
  - Windows 10
- - Git
+ - Git --> [Git Basics](GitBasics.md)
  - Validation libraries (FluentValidation)
  - Mapping libraries (AutoMapper)
 

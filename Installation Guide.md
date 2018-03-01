@@ -19,6 +19,10 @@ https://www.microsoft.com/net/download/windows
 
 Optional: Install .NET Full framemwork latest version ( latest availible at time of writing: .NET 4.7.1 )
 
+## Git
+
+Installer download: [link](https://git-scm.com/download/win)
+
 ## Web requirements
 
 Chrome or Firefox for easier web development.
