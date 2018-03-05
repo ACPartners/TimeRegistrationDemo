@@ -26,10 +26,11 @@ We don't want to drive the concept too far but we still want to have some things
 Id (long)  
 From (date)  
 To   (date)  
-Remarks ( string)  
+Remarks ( string)
 HolidayType  
 IsApproved  (bool)  
-DisApprovedReason (string)  
+DisApprovedReason (string)
+User  
 
 #### HolidayType
 
