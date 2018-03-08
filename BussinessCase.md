@@ -15,7 +15,7 @@ We don't want to drive the concept too far but we still want to have some things
  FirstName(string)  
  LastName(string)  
  UserRoles (1 to many)  
-
+ 
 #### UserRole
 
  Id (string)  
@@ -29,7 +29,8 @@ To   (date)
 Remarks ( string)  
 HolidayType  
 IsApproved  (bool)  
-DisApprovedReason (string)  
+DisApprovedReason (string)
+CreationDate (datetime) 
 
 #### HolidayType
 
@@ -79,6 +80,12 @@ Description (string)
 #### Technical
 
 ##### Backend services
+
+###### Create User
+- Validations
+  - FirstName: length: 2-50
+  - LastName: length: max 50
+  - Combination of FirstName and LastName is unique.
 
 ###### Register holiday 
 - Validations
