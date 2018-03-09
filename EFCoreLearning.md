@@ -22,6 +22,9 @@ But if you are not using Resharper or don't want to have this validation happen,
 Damn no migration for InMemory, I'll those those tests for later.
 
 
+Hmm no Many 2 Many relations without creating the mappingtable as an entity. Could be a deal breaker to advice use of EFCore ( and .NET Core) for projects with many such relations.
+
+
 I'll add more info as I learn about this.
 
 
