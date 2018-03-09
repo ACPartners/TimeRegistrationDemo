@@ -23,6 +23,8 @@ Optional: Install .NET Full framemwork latest version ( latest availible at time
 
 Installer download: [link](https://git-scm.com/download/win)
 
+Don't choose Git Credential manager, it doesn't seem to work that well
+
 ## Web requirements
 
 Chrome or Firefox for easier web development.

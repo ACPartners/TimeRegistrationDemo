@@ -15,3 +15,8 @@ git clone https://github.com/ACPartners/TimeRegistrationDemo.git
 Go to Team Explorer => Connections => Local Git Repositories => Clone and fill in our adress: https://github.com/ACPartners/TimeRegistrationDemo.git
 
 
+Commiting you can do in Visual Studio or from the commandline
+
+
+Sending code back to our repositories:
+When working with many people you don't just check in on the master branch, usually you make your changes on your own branch and make a pull request for this to be merged into master.
