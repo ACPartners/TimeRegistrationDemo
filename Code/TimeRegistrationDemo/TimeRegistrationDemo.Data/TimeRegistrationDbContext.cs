@@ -7,6 +7,8 @@ namespace TimeRegistrationDemo.Data
 {
     public class TimeRegistrationDbContext : DbContext
     {
+        public const string DefaultSchema = "TimeRegistration";
+
         public TimeRegistrationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<UserEntity> Users { get; set; }
@@ -17,6 +19,8 @@ namespace TimeRegistrationDemo.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema(DefaultSchema);
+
             CreateModel(modelBuilder.Entity<HolidayTypeEntity>());
             CreateModel(modelBuilder.Entity<HolidayRequestEntity>());
             CreateModel(modelBuilder.Entity<UserEntity>());
@@ -49,14 +53,15 @@ namespace TimeRegistrationDemo.Data
             entityTypeBuilder.Property(x => x.From).HasColumnName("From").HasColumnType("Date").IsRequired();
             entityTypeBuilder.Property(x => x.To).HasColumnName("To").HasColumnType("Date").IsRequired();
             entityTypeBuilder.Property(x => x.Remarks).HasColumnName("Remarks").HasMaxLength(200);
-            entityTypeBuilder.Property(x => x.IsApproved).HasColumnName("IsApproved").HasDefaultValue(false).IsRequired();
+            entityTypeBuilder.Property(x => x.IsApproved).HasColumnName("IsApproved").IsRequired();
             entityTypeBuilder.Property(x => x.DisapprovedReason).HasColumnName("DisapprovedReason").HasMaxLength(200);
 
             //keys, constraints, ...
             entityTypeBuilder.HasKey(x => x.Id).HasName("PK_HolidayRequest"); //PK
 
             //relations
-            entityTypeBuilder.HasOne(x => x.HolidayType).WithMany(x => x.HolidayRequests).HasForeignKey("HolidayTypeId"); //FK
+            entityTypeBuilder.HasOne(x => x.HolidayType).WithMany(x => x.HolidayRequests).HasForeignKey("HolidayTypeId").OnDelete(DeleteBehavior.Restrict); //FK
+            entityTypeBuilder.HasOne(x => x.User).WithMany(x => x.HolidayRequests).HasForeignKey("UserId").OnDelete(DeleteBehavior.Restrict); //FK
         }
 
         private void CreateModel(EntityTypeBuilder<UserEntity> entityTypeBuilder)
@@ -74,7 +79,7 @@ namespace TimeRegistrationDemo.Data
             entityTypeBuilder.HasIndex(x => new { x.FirstName, x.LastName }).IsUnique().HasName("UK_User"); //UK (firstname + lastname)
 
             //relations
-            entityTypeBuilder.HasMany(x => x.UserRoles).WithOne(x => x.User).HasForeignKey("UserId");
+            entityTypeBuilder.HasMany(x => x.UserRoles).WithOne(x => x.User).HasForeignKey("UserId").OnDelete(DeleteBehavior.Restrict);
         }
 
         private void CreateModel(EntityTypeBuilder<UserRoleEntity> entityTypeBuilder)
@@ -90,13 +95,13 @@ namespace TimeRegistrationDemo.Data
             entityTypeBuilder.HasKey(x => x.Id).HasName("PK_UserRole"); //PK
 
             //relations
-            entityTypeBuilder.HasMany(x => x.Users).WithOne(x => x.UserRole).HasForeignKey("UserRoleId");
+            entityTypeBuilder.HasMany(x => x.Users).WithOne(x => x.UserRole).HasForeignKey("UserRoleId").OnDelete(DeleteBehavior.Restrict);
         }
 
         private void CreateModel(EntityTypeBuilder<UserUserRoleEntity> entityTypeBuilder)
         {
             //table name
-            entityTypeBuilder.ToTable("UserUserRoles");
+            entityTypeBuilder.ToTable("UsersUserRoles");
 
             //fields
             entityTypeBuilder.Property(x => x.UserId).HasColumnName("UserId");

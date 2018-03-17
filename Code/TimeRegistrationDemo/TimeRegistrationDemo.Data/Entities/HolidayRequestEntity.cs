@@ -28,6 +28,7 @@ namespace TimeRegistrationDemo.Data.Entities
         [Required]
         public HolidayTypeEntity HolidayType { get; set; }
 
-        //todo link naar user toevoegen
+        [Required]
+        public UserEntity User { get; set; }
     }
 }

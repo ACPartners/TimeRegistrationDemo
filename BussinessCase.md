@@ -19,7 +19,7 @@ We don't want to drive the concept too far but we still want to have some things
 #### UserRole
 
  Id (string)  
- TypeDesc (string)  
+ Description (string)  
 
 #### HolidayRequest
 
@@ -46,7 +46,7 @@ Description (string)
 ##### Login
 
 - Employee
-- Employer
+- Manager
 - System administrator
 
 ##### Employee functionalities
@@ -68,7 +68,7 @@ Description (string)
     - Remarks
   - Overview of holidays to be approved (same data as above)
 
-##### Employer functionalities
+##### Manager functionalities
 - Accept/Decline holiday request of employees
   - Approved/Declined
   - Decline reason
@@ -113,7 +113,7 @@ Description (string)
   - Filter
     - Year: if none provided (default): current year
   - Ordered by From date
-- Employer: Same as for employee but extra filter: Employee
+- Manager: Same as for employee but extra filter: Employee
 
 ###### List of Holidays (overview of all employees)
 Same as for employee but extra grouping level: Employee
@@ -135,7 +135,7 @@ Same as for employee but extra grouping level: Employee
 
 ##### Authentication
 To investigate:
-- How to make the distinction between employer and employee and admin? Possible user table in database with predefined users and assigned role
+- How to make the distinction between manager and employee and admin? Possible user table in database with predefined users and assigned role
 - Secure api calls
 - Change api behaviour based on authentication
 
@@ -151,6 +151,6 @@ Do we need a more complex example (with a one-to-many relationship between "tabl
 Future functionalities or do we provide timesheets:
 - Register timesheet (employee)
 - List timesheets (employee)
-- Accept/Decline timesheet of employees (employer)
+- Accept/Decline timesheet of employees (manager)
 - Change timesheet categories (application development, support,...)
 - ...

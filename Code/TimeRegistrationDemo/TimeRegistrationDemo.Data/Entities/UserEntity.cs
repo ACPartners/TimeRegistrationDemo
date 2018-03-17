@@ -17,5 +17,7 @@ namespace TimeRegistrationDemo.Data.Entities
         public string LastName { get; set; }
 
         public ICollection<UserUserRoleEntity> UserRoles { get; set; }
+
+        public ICollection<HolidayRequestEntity> HolidayRequests { get; set; }
     }
 }
