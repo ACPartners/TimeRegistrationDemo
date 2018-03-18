@@ -9,19 +9,23 @@ namespace TimeRegistrationDemo.Services.Implementations
     {
         private readonly IHolidayRequestRepository HolidayRequestRepository;
         private readonly IHolidayTypeRepository HolidayTypeRepository;
+        private readonly IUserRepository UserRepository;
 
         public RegisterHolidayRequestService(
             IHolidayRequestRepository holidayRequestRepository,
-            IHolidayTypeRepository holidayTypeRepository)
+            IHolidayTypeRepository holidayTypeRepository,
+            IUserRepository userRepository)
         {
             HolidayRequestRepository = holidayRequestRepository;
             HolidayTypeRepository = holidayTypeRepository;
+            UserRepository = userRepository;
         }
 
         public RegisterHolidayRequestOutputDto Register(RegisterHolidayRequestInputDto request)
         {
             // get referential data
             var holidayType = HolidayTypeRepository.GetByKey(request.HolidayType);
+            var user = UserRepository.GetByKey(request.UserId);
 
             // create entity
             var holidayRequestEntity = new HolidayRequestEntity()
@@ -30,10 +34,7 @@ namespace TimeRegistrationDemo.Services.Implementations
                 To = request.To,
                 Remarks = request.Remarks,
                 HolidayType = holidayType,
-                //todo fill user
-                //UserId = request.userId,
-
-
+                User = user
             };
 
             //validate entity

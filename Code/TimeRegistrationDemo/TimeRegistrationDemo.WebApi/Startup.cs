@@ -51,6 +51,7 @@ namespace TimeRegistrationDemo.WebApi
         {
             services.AddTransient<IHolidayRequestRepository, HolidayRequestRepository>();
             services.AddTransient<IHolidayTypeRepository, HolidayTypeRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             RegisterTimeRegistrationDemoDbContext(services);
         }
