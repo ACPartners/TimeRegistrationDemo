@@ -40,10 +40,11 @@ namespace TimeRegistrationDemo.Services.Implementations
             //validate entity
 
             //save entity
+            HolidayRequestRepository.Register(holidayRequestEntity);
 
-
-            //return result;
-            throw new System.NotImplementedException();
+            return new RegisterHolidayRequestOutputDto();
         }
     }
 }
+
+//todo dbcontext must be threadsafe + in transaction
