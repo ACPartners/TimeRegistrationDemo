@@ -25,6 +25,9 @@ namespace TimeRegistrationDemo.Data.Entities
         public string DisapprovedReason { get; set; }
 
         [Required]
+        public DateTime CreationDateTime { get; set; }
+
+        [Required]
         public HolidayTypeEntity HolidayType { get; set; }
 
         [Required]
@@ -32,5 +35,5 @@ namespace TimeRegistrationDemo.Data.Entities
     }
 }
 
-//todo creationdate toevoegen
 //todo approvaldate toevoegen??? nog niet in businesscase document
+//todo rowversion toevoegen

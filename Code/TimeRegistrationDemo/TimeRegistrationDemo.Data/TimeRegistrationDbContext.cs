@@ -55,6 +55,7 @@ namespace TimeRegistrationDemo.Data
             entityTypeBuilder.Property(x => x.Remarks).HasColumnName("Remarks").HasMaxLength(200);
             entityTypeBuilder.Property(x => x.IsApproved).HasColumnName("IsApproved");
             entityTypeBuilder.Property(x => x.DisapprovedReason).HasColumnName("DisapprovedReason").HasMaxLength(200);
+            entityTypeBuilder.Property(x => x.CreationDateTime).HasColumnName("CreationDateTime").IsRequired().HasDefaultValueSql("getdate()"); ;
 
             //keys, constraints, ...
             entityTypeBuilder.HasKey(x => x.Id).HasName("PK_HolidayRequest"); //PK
