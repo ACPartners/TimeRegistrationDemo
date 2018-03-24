@@ -18,5 +18,10 @@ namespace TimeRegistrationDemo.Repositories.Implementations
         {
             return TimeRegistrationDbContext.HolidayTypes.Single(x => x.Id == key);
         }
+
+        public bool ExistsByKey(string key)
+        {
+            return TimeRegistrationDbContext.HolidayTypes.Any(x => x.Id == key);
+        }
     }
 }

@@ -2,11 +2,11 @@
 using System;
 using TimeRegistrationDemo.Data.Entities;
 
-namespace TimeRegistrationDemo.Services.Validation.Validators
+namespace TimeRegistrationDemo.Services.Validation.EntityValidators
 {
-    public class HolidayRequestValidator : AbstractValidator<HolidayRequestEntity>
+    public class HolidayRequestEntityValidator : AbstractValidator<HolidayRequestEntity>
     {
-        public HolidayRequestValidator()
+        public HolidayRequestEntityValidator()
         {
             RuleFor(hr => hr.From)
                 .NotEqual(DateTime.MinValue) //datetime is value type -> can never be null
@@ -25,8 +25,7 @@ namespace TimeRegistrationDemo.Services.Validation.Validators
             //DisapprovedReason is required when IsApproved is false
             RuleFor(hr => hr.DisapprovedReason)
                 .NotEmpty()
-                .When(hr => hr.IsApproved.HasValue && !hr.IsApproved.Value)
-                .WithMessage("DisapprovedReason is required.");
+                .When(hr => hr.IsApproved.HasValue && !hr.IsApproved.Value);
 
             RuleFor(hr => hr.DisapprovedReason)
                 .MaximumLength(200)

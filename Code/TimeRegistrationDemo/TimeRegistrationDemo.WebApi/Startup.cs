@@ -8,9 +8,11 @@ using TimeRegistrationDemo.Data;
 using TimeRegistrationDemo.Data.Entities;
 using TimeRegistrationDemo.Repositories.Implementations;
 using TimeRegistrationDemo.Repositories.Interfaces;
+using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 using TimeRegistrationDemo.Services.Implementations;
 using TimeRegistrationDemo.Services.Interfaces;
-using TimeRegistrationDemo.Services.Validation.Validators;
+using TimeRegistrationDemo.Services.Validation.DtoValidators;
+using TimeRegistrationDemo.Services.Validation.EntityValidators;
 
 namespace TimeRegistrationDemo.WebApi
 {
@@ -50,7 +52,8 @@ namespace TimeRegistrationDemo.WebApi
             services.AddTransient<IRegisterHolidayRequestService, RegisterHolidayRequestService>();
 
             //validators
-            services.AddTransient<IValidator<HolidayRequestEntity>, HolidayRequestValidator>();
+            services.AddTransient<IValidator<HolidayRequestEntity>, HolidayRequestEntityValidator>();
+            services.AddTransient<IValidator<RegisterHolidayRequestInputDto>, RegisterHolidayRequestInputDtoValidator>();
 
             RegisterTimeRegistrationDemoRepositories(services);
         }

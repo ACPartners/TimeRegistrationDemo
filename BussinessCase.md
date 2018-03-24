@@ -102,7 +102,7 @@ We don't want to drive the concept too far but we still want to have some things
   - From date must be before To date
   - From date must be before today
   - Valid Type of holiday
-  - Holiday is not yet in database
+  - Holiday is not yet in database (to + from + user combination)
 
 ##### Authentication (TODO)
 

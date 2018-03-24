@@ -1,4 +1,6 @@
-﻿using TimeRegistrationDemo.Data;
+﻿using System;
+using System.Linq;
+using TimeRegistrationDemo.Data;
 using TimeRegistrationDemo.Data.Entities;
 using TimeRegistrationDemo.Repositories.Interfaces;
 
@@ -17,6 +19,11 @@ namespace TimeRegistrationDemo.Repositories.Implementations
         {
             TimeRegistrationDbContext.HolidayRequests.Add(holidayRequest);
             TimeRegistrationDbContext.SaveChanges();
+        }
+
+        public bool ExistsByToAndFrom(DateTime from, DateTime to, long userId)
+        {
+            return TimeRegistrationDbContext.HolidayRequests.Any(x => x.From == from && x.To == to && x.User.Id == userId);
         }
     }
 }

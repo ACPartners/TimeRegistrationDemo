@@ -8,10 +8,15 @@ namespace TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest
     {
         public TRValidationResult ValidationResult { get; }
         public HolidayRequestDto Result { get; }
+        public bool IsSuccessful => ValidationResult == null;
 
-        public RegisterHolidayRequestOutputDto(HolidayRequestDto result, TRValidationResult validationResult)
+        public RegisterHolidayRequestOutputDto(HolidayRequestDto result)
         {
             Result = result;
+        }
+
+        public RegisterHolidayRequestOutputDto(TRValidationResult validationResult)
+        {
             ValidationResult = validationResult;
         }
     }

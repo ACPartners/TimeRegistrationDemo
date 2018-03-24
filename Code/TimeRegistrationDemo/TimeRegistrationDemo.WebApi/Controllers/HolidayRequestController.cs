@@ -29,7 +29,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
 
             var outputDto = RegisterHolidayRequestService.Register(inputDto);
 
-            if (outputDto.ValidationResult.IsValid)
+            if (outputDto.IsSuccessful)
             {
                 return Ok(outputDto.Result);
             }
