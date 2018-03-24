@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TimeRegistrationDemo.Services.Dtos;
+using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 using TimeRegistrationDemo.Services.Interfaces;
 using TimeRegistrationDemo.WebApi.Models;
 
@@ -26,9 +26,17 @@ namespace TimeRegistrationDemo.WebApi.Controllers
                 holidayRequest.From, holidayRequest.To,
                 holidayRequest.Remarks, holidayRequest.HolidayType,
                 userId);
+
             var outputDto = RegisterHolidayRequestService.Register(inputDto);
 
-            return Ok();
+            if (outputDto.ValidationResult.IsValid)
+            {
+                return Ok(outputDto.Result);
+            }
+            else
+            {
+                return BadRequest(outputDto.ValidationResult);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using TimeRegistrationDemo.Services.Dtos;
+﻿using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 
 namespace TimeRegistrationDemo.Services.Interfaces
 {

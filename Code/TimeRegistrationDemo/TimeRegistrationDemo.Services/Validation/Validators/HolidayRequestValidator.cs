@@ -2,7 +2,7 @@
 using System;
 using TimeRegistrationDemo.Data.Entities;
 
-namespace TimeRegistrationDemo.Services.Validation
+namespace TimeRegistrationDemo.Services.Validation.Validators
 {
     public class HolidayRequestValidator : AbstractValidator<HolidayRequestEntity>
     {

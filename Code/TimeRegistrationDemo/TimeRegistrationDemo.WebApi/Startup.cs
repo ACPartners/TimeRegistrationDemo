@@ -10,7 +10,7 @@ using TimeRegistrationDemo.Repositories.Implementations;
 using TimeRegistrationDemo.Repositories.Interfaces;
 using TimeRegistrationDemo.Services.Implementations;
 using TimeRegistrationDemo.Services.Interfaces;
-using TimeRegistrationDemo.Services.Validation;
+using TimeRegistrationDemo.Services.Validation.Validators;
 
 namespace TimeRegistrationDemo.WebApi
 {

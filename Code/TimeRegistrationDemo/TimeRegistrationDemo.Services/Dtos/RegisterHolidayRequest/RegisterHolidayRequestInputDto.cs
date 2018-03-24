@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TimeRegistrationDemo.Services.Dtos
+namespace TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest
 {
     public class RegisterHolidayRequestInputDto
     {

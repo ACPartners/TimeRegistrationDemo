@@ -2,7 +2,9 @@
 using TimeRegistrationDemo.Data.Entities;
 using TimeRegistrationDemo.Repositories.Interfaces;
 using TimeRegistrationDemo.Services.Dtos;
+using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 using TimeRegistrationDemo.Services.Interfaces;
+using TimeRegistrationDemo.Services.Validation.ValidationResult;
 
 namespace TimeRegistrationDemo.Services.Implementations
 {
@@ -42,17 +44,18 @@ namespace TimeRegistrationDemo.Services.Implementations
             };
 
             //validate entity
-            var validationResult = HolidayRequestValidator.Validate(holidayRequestEntity);
+            var validationResult = HolidayRequestValidator.Validate(holidayRequestEntity).ToTRValidationResult();
 
             //save entity
-            HolidayRequestRepository.Register(holidayRequestEntity);
+            if (validationResult.IsValid)
+                HolidayRequestRepository.Register(holidayRequestEntity);
 
-            //todo fill output object with saved entity and errors
-            return new RegisterHolidayRequestOutputDto();
+            return new RegisterHolidayRequestOutputDto(holidayRequestEntity.ToDto(), validationResult);
         }
     }
 }
 
+//todo validate: holidayrequestinputdto
 //todo validate: Holiday is not yet in database
 //todo validate: holidaytype input die niet bestaat in dto (of null)
 //todo dbcontext must be threadsafe + in transaction
