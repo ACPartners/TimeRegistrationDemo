@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TimeRegistrationDemo.Services.Dtos.Shared
 {
@@ -19,7 +20,9 @@ namespace TimeRegistrationDemo.Services.Dtos.Shared
         }
 
         public long Id { get; set; }
+        [DataType(DataType.Date)]
         public DateTime From { get; set; }
+        [DataType(DataType.Date)]
         public DateTime To { get; set; }
         public string Remarks { get; set; }
         public bool? IsApproved { get; set; }
