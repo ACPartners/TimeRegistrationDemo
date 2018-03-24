@@ -33,6 +33,7 @@ See [Installation Guide](Installation%20Guide.md)
  - Design Patterns
  - Logging & Exception handling
  - Minimum Viable Product
+ - Unit Testing
 
 ## Future Ideas
  - Use Azure as hoster

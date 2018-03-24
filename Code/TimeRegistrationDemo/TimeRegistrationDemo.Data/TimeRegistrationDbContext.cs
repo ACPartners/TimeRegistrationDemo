@@ -53,7 +53,7 @@ namespace TimeRegistrationDemo.Data
             entityTypeBuilder.Property(x => x.From).HasColumnName("From").HasColumnType("Date").IsRequired();
             entityTypeBuilder.Property(x => x.To).HasColumnName("To").HasColumnType("Date").IsRequired();
             entityTypeBuilder.Property(x => x.Remarks).HasColumnName("Remarks").HasMaxLength(200);
-            entityTypeBuilder.Property(x => x.IsApproved).HasColumnName("IsApproved").IsRequired();
+            entityTypeBuilder.Property(x => x.IsApproved).HasColumnName("IsApproved");
             entityTypeBuilder.Property(x => x.DisapprovedReason).HasColumnName("DisapprovedReason").HasMaxLength(200);
 
             //keys, constraints, ...

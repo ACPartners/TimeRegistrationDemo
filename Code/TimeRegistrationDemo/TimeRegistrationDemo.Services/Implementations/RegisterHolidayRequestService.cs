@@ -1,4 +1,5 @@
-﻿using TimeRegistrationDemo.Data.Entities;
+﻿using FluentValidation;
+using TimeRegistrationDemo.Data.Entities;
 using TimeRegistrationDemo.Repositories.Interfaces;
 using TimeRegistrationDemo.Services.Dtos;
 using TimeRegistrationDemo.Services.Interfaces;
@@ -10,15 +11,18 @@ namespace TimeRegistrationDemo.Services.Implementations
         private readonly IHolidayRequestRepository HolidayRequestRepository;
         private readonly IHolidayTypeRepository HolidayTypeRepository;
         private readonly IUserRepository UserRepository;
+        private readonly IValidator<HolidayRequestEntity> HolidayRequestValidator;
 
         public RegisterHolidayRequestService(
             IHolidayRequestRepository holidayRequestRepository,
             IHolidayTypeRepository holidayTypeRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IValidator<HolidayRequestEntity> holidayRequestValidator)
         {
             HolidayRequestRepository = holidayRequestRepository;
             HolidayTypeRepository = holidayTypeRepository;
             UserRepository = userRepository;
+            HolidayRequestValidator = holidayRequestValidator;
         }
 
         public RegisterHolidayRequestOutputDto Register(RegisterHolidayRequestInputDto request)
@@ -38,13 +42,17 @@ namespace TimeRegistrationDemo.Services.Implementations
             };
 
             //validate entity
+            var validationResult = HolidayRequestValidator.Validate(holidayRequestEntity);
 
             //save entity
             HolidayRequestRepository.Register(holidayRequestEntity);
 
+            //todo fill output object with saved entity and errors
             return new RegisterHolidayRequestOutputDto();
         }
     }
 }
 
+//todo validate: Holiday is not yet in database
+//todo validate: holidaytype input die niet bestaat in dto (of null)
 //todo dbcontext must be threadsafe + in transaction

@@ -11,9 +11,10 @@ using TimeRegistrationDemo.Data;
 namespace TimeRegistrationDemo.Data.Migrations
 {
     [DbContext(typeof(TimeRegistrationDbContext))]
-    partial class TimeRegistrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180324145818_MakeIsApprovedNullable")]
+    partial class MakeIsApprovedNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

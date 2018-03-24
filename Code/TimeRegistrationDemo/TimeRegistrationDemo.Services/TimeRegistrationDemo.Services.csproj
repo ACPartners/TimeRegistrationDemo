@@ -8,4 +8,8 @@
     <ProjectReference Include="..\TimeRegistrationDemo.Repositories\TimeRegistrationDemo.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="7.5.2" />
+  </ItemGroup>
+
 </Project>

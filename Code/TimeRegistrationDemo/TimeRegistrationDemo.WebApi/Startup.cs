@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TimeRegistrationDemo.Data;
+using TimeRegistrationDemo.Data.Entities;
 using TimeRegistrationDemo.Repositories.Implementations;
 using TimeRegistrationDemo.Repositories.Interfaces;
 using TimeRegistrationDemo.Services.Implementations;
 using TimeRegistrationDemo.Services.Interfaces;
+using TimeRegistrationDemo.Services.Validation;
 
 namespace TimeRegistrationDemo.WebApi
 {
@@ -40,9 +43,14 @@ namespace TimeRegistrationDemo.WebApi
             app.UseMvc();
         }
 
+        //todo move methods to projects itself
         private void RegisterTimeRegistrationDemoServices(IServiceCollection services)
         {
+            //services
             services.AddTransient<IRegisterHolidayRequestService, RegisterHolidayRequestService>();
+
+            //validators
+            services.AddTransient<IValidator<HolidayRequestEntity>, HolidayRequestValidator>();
 
             RegisterTimeRegistrationDemoRepositories(services);
         }

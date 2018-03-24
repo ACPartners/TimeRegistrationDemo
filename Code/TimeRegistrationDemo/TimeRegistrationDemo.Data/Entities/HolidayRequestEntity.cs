@@ -19,8 +19,7 @@ namespace TimeRegistrationDemo.Data.Entities
         [StringLength(200)]
         public string Remarks { get; set; }
 
-        [Required]
-        public bool IsApproved { get; set; }
+        public bool? IsApproved { get; set; }
 
         [StringLength(200)]
         public string DisapprovedReason { get; set; }
@@ -32,3 +31,6 @@ namespace TimeRegistrationDemo.Data.Entities
         public UserEntity User { get; set; }
     }
 }
+
+//todo creationdate toevoegen
+//todo approvaldate toevoegen??? nog niet in businesscase document
