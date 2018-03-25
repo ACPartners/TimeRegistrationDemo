@@ -1,5 +1,4 @@
-﻿using System;
-using TimeRegistrationDemo.Services.Dtos.Shared;
+﻿using TimeRegistrationDemo.Services.Dtos.Shared;
 using TimeRegistrationDemo.Services.Validation.ValidationResult;
 
 namespace TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest

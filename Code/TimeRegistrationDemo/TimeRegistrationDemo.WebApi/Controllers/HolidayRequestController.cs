@@ -1,6 +1,8 @@
 ﻿using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using TimeRegistrationDemo.Services.Dtos.ListHolidayRequest;
 using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 using TimeRegistrationDemo.Services.Interfaces;
 using TimeRegistrationDemo.WebApi.Models;
@@ -12,10 +14,15 @@ namespace TimeRegistrationDemo.WebApi.Controllers
     public class HolidayRequestController : Controller
     {
         private readonly IRegisterHolidayRequestService RegisterHolidayRequestService;
+        private readonly IListHolidayRequestService ListHolidayRequestService;
 
-        public HolidayRequestController(IRegisterHolidayRequestService registerHolidayRequestService)
+        public HolidayRequestController(
+            IRegisterHolidayRequestService registerHolidayRequestService,
+            IListHolidayRequestService listHolidayRequestService
+            )
         {
             RegisterHolidayRequestService = registerHolidayRequestService;
+            ListHolidayRequestService = listHolidayRequestService;
         }
 
         [HttpPost]
@@ -43,6 +50,21 @@ namespace TimeRegistrationDemo.WebApi.Controllers
             {
                 return BadRequest(outputDto.ValidationResult);
             }
+        }
+
+        [HttpGet]
+        [Route("{year:int?}")]
+        public IActionResult Get(int? year)
+        {
+            //todo get user from authentication system
+            var userId = 1;
+
+            if (!year.HasValue)
+                year = DateTime.Today.Year;
+
+            var outputDto = ListHolidayRequestService.List(new ListHolidayRequestInputDto(year.Value, userId));
+
+            return Ok(outputDto);
         }
     }
 }

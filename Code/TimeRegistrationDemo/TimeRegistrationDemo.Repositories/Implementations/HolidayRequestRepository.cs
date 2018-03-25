@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using TimeRegistrationDemo.Data;
 using TimeRegistrationDemo.Data.Entities;
@@ -23,7 +25,16 @@ namespace TimeRegistrationDemo.Repositories.Implementations
 
         public bool ExistsByToAndFrom(DateTime from, DateTime to, long userId)
         {
-            return TimeRegistrationDbContext.HolidayRequests.Any(x => x.From == from && x.To == to && x.User.Id == userId);
+            return TimeRegistrationDbContext.HolidayRequests
+                .Any(x => x.From == from && x.To == to && x.User.Id == userId);
+        }
+
+        public IList<HolidayRequestEntity> GetByYearAndUserId(int year, long userId)
+        {
+            return TimeRegistrationDbContext.HolidayRequests
+                .Include(x => x.HolidayType)
+                .Where(x => x.From.Date.Year == year && x.User.Id == userId)
+                .ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TimeRegistrationDemo.Data.Entities;
 
 namespace TimeRegistrationDemo.Repositories.Interfaces
@@ -7,5 +8,6 @@ namespace TimeRegistrationDemo.Repositories.Interfaces
     {
         void Register(HolidayRequestEntity holidayRequest);
         bool ExistsByToAndFrom(DateTime from, DateTime to, long userId);
+        IList<HolidayRequestEntity> GetByYearAndUserId(int year, long userId);
     }
 }

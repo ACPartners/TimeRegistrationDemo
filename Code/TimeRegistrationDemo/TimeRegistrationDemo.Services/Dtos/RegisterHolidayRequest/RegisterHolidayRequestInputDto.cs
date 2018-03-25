@@ -13,10 +13,10 @@ namespace TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest
             UserId = userId;
         }
 
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
-        public string Remarks { get; set; }
-        public string HolidayType { get; set; }
-        public long UserId { get; set; }
+        public DateTime From { get; }
+        public DateTime To { get; }
+        public string Remarks { get; }
+        public string HolidayType { get; }
+        public long UserId { get; }
     }
 }
