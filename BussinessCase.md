@@ -1,3 +1,4 @@
+
 # Bussiness Case Design Document (initial draft)
 
 ## Introduction
@@ -9,33 +10,42 @@ We don't want to drive the concept too far but we still want to have some things
 
 ### Entities
 
-#### User
+####  User
 
- Id (int)  
- FirstName(string)  
- LastName(string)  
- UserRoles (1 to many)  
-
+|Property|Type|Required| 
+|--|--|--|
+|Id|int|yes
+|FirstName|string(50)|yes
+|LastName|string(50)|yes
+|UserRoles|UserRole|  
+ 
 #### UserRole
 
- Id (string)  
- TypeDesc (string)  
+|Property|Type|Required| 
+|--|--|--|
+|Id|string(1)|yes 
+|Description|string(100)|no
 
 #### HolidayRequest
 
-Id (long)  
-From (date)  
-To   (date)  
-Remarks ( string)
-HolidayType  
-IsApproved  (bool)  
-DisApprovedReason (string)
-User  
+|Property|Type|Required| 
+|--|--|--|
+|Id|long|yes
+|From|date|yes
+|To|date|yes
+|Remarks|string(200)|no
+|IsApproved|bool|no
+|DisApprovedReason|string(200)|no
+|CreationDate|datetime|yes
+|User|User|yes
+|HolidayType|HolidayType|yes
 
 #### HolidayType
 
-Id (string)  
-Description (string)  
+|Property|Type|Required| 
+|--|--|--|
+|Id|string(1)|yes
+|Description|string(30)|yes 
 
 
 ### Web
@@ -45,10 +55,11 @@ Description (string)
 ##### Login
 
 - Employee
-- Employer
+- Manager
 - System administrator
 
 ##### Employee functionalities
+
 - Register holiday
   - From date
   - Until date
@@ -67,14 +78,17 @@ Description (string)
     - Remarks
   - Overview of holidays to be approved (same data as above)
 
-##### Employer functionalities
+##### Manager functionalities
+
 - Accept/Decline holiday request of employees
   - Approved/Declined
   - Decline reason
 - Reports
   - List holidays by person (same as "List of holidays" of Employee)
   - List holidays (overview of all employees)
+
 ##### System administrator functionalities
+
 - Change type of holidays (Paid holiday, Normal holiday, Sick-leave, Maternity leave)
 
 #### Technical
@@ -82,16 +96,46 @@ Description (string)
 ##### Backend services
 
 ###### Register holiday 
+
 - Validations
-  - From date is before Until date
+  - Default entity validations (required, max length,...)  
+  - From date must be before To date
+  - From date must be before today
   - Valid Type of holiday
-  - Holiday is not yet in database
+  - Holiday is not yet in database (to + from + user combination)
+
+##### Authentication (TODO)
+
+To investigate:
+- How to make the distinction between manager and employee and admin? Possible usertable in database with predefined users and assigned role
+- Secure api calls
+- Change api behaviour based on authentication
+
+Information:
+https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
+
+##### Screens
+
+not needed for backend for the moment :-)
+
+
+# EVERYTHING BELOW IS STILL TO VERIFY (OR ADD MORE DETAIL)
 
 ###### Revoke holiday request
+
 - Validations
+  - Default entity validations (required, max length,...) 
   - Not yet approved
 
+###### Create User
+
+- Validations
+  - FirstName: length: 2-50
+  - LastName: length: max 50
+  - Combination of FirstName and LastName is unique.
+
 ###### List of holidays (by year)
+
 - Employee
   - Data
     - Total number of all holidays
@@ -106,18 +150,21 @@ Description (string)
   - Filter
     - Year: if none provided (default): current year
   - Ordered by From date
-- Employer: Same as for employee but extra filter: Employee
+- Manager: Same as for employee but extra filter: Employee
 
 ###### List of Holidays (overview of all employees)
+
 Same as for employee but extra grouping level: Employee
 
 ###### Accept holiday request of employees
 
 ###### Decline holiday request of employees
+
 - Validations
   - Decline reason
 
 ###### Change type of holidays
+
 - Validations
   - Check uniqueness of Type of holiday
 - Initial values
@@ -126,24 +173,15 @@ Same as for employee but extra grouping level: Employee
   - Sick-leave
   - Maternity leave
 
-##### Authentication
-To investigate:
-- How to make the distinction between employer and employee and admin? Possible user table in database with predefined users and assigned role
-- Secure api calls
-- Change api behaviour based on authentication
 
-Information:
-https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
-
-##### Screens
-not needed for backend for the moment :-)
 
 ##### TO DISCUSS
+
 Do we need a more complex example (with a one-to-many relationship between "tables/entities")
 
 Future functionalities or do we provide timesheets:
 - Register timesheet (employee)
 - List timesheets (employee)
-- Accept/Decline timesheet of employees (employer)
+- Accept/Decline timesheet of employees (manager)
 - Change timesheet categories (application development, support,...)
 - ...
