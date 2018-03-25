@@ -61,5 +61,3 @@ namespace TimeRegistrationDemo.Services.Validation.DtoValidators
         }
     }
 }
-
-//todo validators "generieker" maken

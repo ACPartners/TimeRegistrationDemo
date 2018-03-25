@@ -19,7 +19,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] RegisterHolidayRequestModel holidayRequest)
         {
-            //todo get user via authentication system
+            //todo get user from authentication system
             var userId = 1;
 
             var inputDto = new RegisterHolidayRequestInputDto(

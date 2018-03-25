@@ -54,4 +54,4 @@ namespace TimeRegistrationDemo.Services.Validation.EntityValidators
     }
 }
 
-//todo nog testen (dispprovereason in combinatie met isapproved)
+//todo still to test: dispprovereason in combination with isapproved

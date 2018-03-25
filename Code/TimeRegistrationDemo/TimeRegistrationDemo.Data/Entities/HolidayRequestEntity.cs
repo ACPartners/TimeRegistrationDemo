@@ -35,5 +35,5 @@ namespace TimeRegistrationDemo.Data.Entities
     }
 }
 
-//todo approvaldate toevoegen??? nog niet in businesscase document
-//todo rowversion toevoegen
+//todo add approvaldate --> not yet defined in businesscase document
+//todo add rowversion
