@@ -24,10 +24,8 @@ namespace QuickstartIdentityServer
         public static IEnumerable<ApiResource> GetApiResources()
         {
             var resource = new ApiResource("HolidayRequests", "Holiday Requests");
-            var scope = new Scope("Requests");
-            scope.UserClaims.Add("name");
-            scope.UserClaims.Add("role");
-            resource.Scopes.Add(scope);
+            resource.UserClaims.Add("name");
+            resource.UserClaims.Add("role");
             return new List<ApiResource>
             {
                 new ApiResource("api1", "My API"),
@@ -76,6 +74,7 @@ namespace QuickstartIdentityServer
                     RedirectUris = { "http://localhost:5002/signin-oidc","http://localhost:55229/swagger/oauth2-redirect.html" },
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
                     AllowAccessTokensViaBrowser = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -114,7 +113,7 @@ namespace QuickstartIdentityServer
                     {
                         new Claim("name", "bob"),
                         new Claim("website", "https://bob.com"),
-                        new Claim("role","Manager")
+                        new Claim("role","Managers")
                     }
                 }
             };

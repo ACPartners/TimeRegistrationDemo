@@ -27,18 +27,19 @@ namespace TimeRegistrationDemo.WebApi
     {
         options.Authority = "http://localhost:5000";
         options.RequireHttpsMetadata = false;
-        options.ApiName = "HolidayRequests";
+        //options.ApiName = "HolidayRequests";
     });
             //Authorization policies to be used in the application
-            //services.AddAuthorization(options =>
-            //{
-            //    //Require a role 
-            //    options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
-            //    //Require a value for a certain claim
-            //    options.AddPolicy("RequireAdministratorsAsClaim", policy => policy.RequireClaim("role", "Administrators"));
-            //    // Custom Policy can be constructed with IAuthorizationRequirements
-            //    //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
-            //});
+            services.AddAuthorization(options =>
+            {
+                //Require a role 
+                options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
+                options.AddPolicy("RequireManagersRole", policy => policy.RequireRole("Managers"));
+                //Require a value for a certain claim
+                options.AddPolicy("RequireAdministratorsAsClaim", policy => policy.RequireClaim("role", "Administrators"));
+                // Custom Policy can be constructed with IAuthorizationRequirements
+                //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
+            });
 
             //services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
             //public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
@@ -86,7 +87,6 @@ namespace TimeRegistrationDemo.WebApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.OAuthClientId("mvc");
-                //c.OAuth2RedirectUrl("http://localhost:55229/swagger");
                 c.OAuthAppName("TimeRegistration Demo");
                 c.OAuthAdditionalQueryStringParams(new { scope = "HolidayRequests" });
                 

@@ -24,7 +24,20 @@ namespace TimeRegistrationDemo.WebApi.Controllers
             RegisterHolidayRequestService = registerHolidayRequestService;
             ListHolidayRequestService = listHolidayRequestService;
         }
-
+        [HttpGet]
+        [Route("Admin")]
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireAdministratorsRole")]
+        public IActionResult GetAdministrator()
+        {
+            return Ok();
+        }
+        [HttpGet]
+        [Route("Manager")]
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireManagersRole")]
+        public IActionResult GetManager()
+        {
+            return Ok();
+        }
         [HttpPost]
         // Simple requirement, a valid access token must have been presented
         [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
