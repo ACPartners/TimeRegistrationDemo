@@ -9,6 +9,9 @@
 
 Download page: [VS downloads](https://www.visualstudio.com/downloads/)
 
+Options:  to enable localdb -> select option  .NET Desktop development.
+
+
 ## Docker for Windows
 
 Installation instruction: [link](https://docs.docker.com/docker-for-windows/install/)

@@ -114,6 +114,19 @@ To investigate:
 Information:
 https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login
 
+Because of previous experience and ease of use, we choose to use IdentityServer to host our security flows.  
+https://github.com/IdentityServer
+
+Our Identityserver setup will only work with hard-code testusers, but it can be hooked up to different identifycation protocols  ( Azure, Active Directory, Google, ...)
+
+##### Authorization
+
+Authorization is the process of assigning rights to indicate what a certain entity is allowed to do in your application. For instance is a person allowed to see certain data.
+
+Here we want to make use of OAuth 2.0 access tokens. A nice features of Identity Server is that it is also a fully compliant  OAuth 2.0 provider.  This makes setting up an OpenID/ OAuth2.0 very easy to setup!
+
+
+
 ##### Screens
 
 not needed for backend for the moment :-)

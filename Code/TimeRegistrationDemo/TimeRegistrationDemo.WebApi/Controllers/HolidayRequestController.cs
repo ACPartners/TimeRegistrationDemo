@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TimeRegistrationDemo.Services.Dtos.RegisterHolidayRequest;
 using TimeRegistrationDemo.Services.Interfaces;
 using TimeRegistrationDemo.WebApi.Models;
@@ -17,6 +19,10 @@ namespace TimeRegistrationDemo.WebApi.Controllers
         }
 
         [HttpPost]
+        // Simple requirement, a valid access token must have been presented
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
+        //[Authorize(Roles = "Administrators")] // A claim must be in the access token of the type "role" and value "administrator"
+        //[Authorize(Policy = "RequireAdministratorsRole")]
         public IActionResult Post([FromBody] RegisterHolidayRequestModel holidayRequest)
         {
             //todo get user from authentication system
