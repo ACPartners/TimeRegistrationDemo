@@ -47,7 +47,6 @@ We don't want to drive the concept too far but we still want to have some things
 |Id|string(1)|yes
 |Description|string(30)|yes 
 
-
 ### Web
 
 #### Functionalities
@@ -63,20 +62,30 @@ We don't want to drive the concept too far but we still want to have some things
 - Register holiday
   - From date
   - Until date
-  - Type of holiday
+  - HolidayType
   - Remarks
-- Revoke holiday request
 - List of holidays (by year)
-  - Total number of all holidays
   - Total number of approved holidays
+  - Total number of disapproved holidays
   - Total number of holidays to be approved
-  - Total number of holidays (grouped by Type of holiday)
-  - Overview of approved holidays
+  - Total number of approved holidays (grouped by HolidayType)
+  - Overview of approved holidayrequests
     - From date
     - Until date
-    - Type of holiday
+    - HolidayType
     - Remarks
-  - Overview of holidays to be approved (same data as above)
+  - Overview of holidayrequests to be approved
+    - From date
+    - Until date
+    - HolidayType
+    - Remarks
+  - Overview of disapproved holidayrequests
+    - From date
+    - Until date
+    - HolidayType
+    - Remarks
+	- DisapprovedReason
+- Revoke holiday request
 
 ##### Manager functionalities
 
@@ -89,7 +98,7 @@ We don't want to drive the concept too far but we still want to have some things
 
 ##### System administrator functionalities
 
-- Change type of holidays (Paid holiday, Normal holiday, Sick-leave, Maternity leave)
+- Change HolidayTypes (Paid holiday, Normal holiday, Sick-leave, Maternity leave)
 
 #### Technical
 
@@ -101,8 +110,37 @@ We don't want to drive the concept too far but we still want to have some things
   - Default entity validations (required, max length,...)  
   - From date must be before To date
   - From date must be before today
-  - Valid Type of holiday
+  - Valid HolidayType
   - Holiday is not yet in database (to + from + user combination)
+
+###### List of holidays (by year)
+
+- Employee
+  - Data
+    - Total number of approved holidays	
+    - Total number of disapproved holidays
+    - Total number of holidays to be approved
+    - Total number of approved holidays (grouped by HolidayType) (dynamic array)
+    - Overview of approved holidayrequests
+      - From date
+      - Until date
+      - HolidayType
+      - Remarks
+    - Overview of holidayrequests to be approved
+      - From date
+      - Until date
+      - HolidayType
+      - Remarks
+	- Overview of disapproved holidayrequests
+	  - From date
+	  - Until date
+	  - HolidayType
+	  - Remarks
+	  - DisapprovedReason
+  - Filter
+    - Year: if none provided (default): current year
+	- User: authenticated user
+  - Ordered by From date
 
 ##### Authentication (TODO)
 
@@ -136,20 +174,6 @@ not needed for backend for the moment :-)
 
 ###### List of holidays (by year)
 
-- Employee
-  - Data
-    - Total number of all holidays
-    - Total number of approved holidays
-    - Total number of holidays to be approved
-    - Total number of holidays (grouped by Type of holiday) (dynamic array)
-    - Overview of approved holidays
-      - From date
-      - Until date
-      - Type of holiday
-      - Remarks (first 100 characters)
-  - Filter
-    - Year: if none provided (default): current year
-  - Ordered by From date
 - Manager: Same as for employee but extra filter: Employee
 
 ###### List of Holidays (overview of all employees)
@@ -163,10 +187,10 @@ Same as for employee but extra grouping level: Employee
 - Validations
   - Decline reason
 
-###### Change type of holidays
+###### Change HolidayTypes
 
 - Validations
-  - Check uniqueness of Type of holiday
+  - Check uniqueness of HolidayType
 - Initial values
   - Paid holiday
   - Normal holiday

@@ -19,14 +19,14 @@ namespace TimeRegistrationDemo.Services.Dtos.Shared
             HolidayType = holidayType;
         }
 
-        public long Id { get; set; }
+        public long Id { get; }
         [DataType(DataType.Date)]
-        public DateTime From { get; set; }
+        public DateTime From { get; }
         [DataType(DataType.Date)]
-        public DateTime To { get; set; }
-        public string Remarks { get; set; }
-        public bool? IsApproved { get; set; }
-        public string DisapprovedReason { get; set; }
-        public HolidayTypeDto HolidayType { get; set; }
+        public DateTime To { get; }
+        public string Remarks { get; }
+        public bool? IsApproved { get; }
+        public string DisapprovedReason { get; }
+        public HolidayTypeDto HolidayType { get; }
     }
 }
