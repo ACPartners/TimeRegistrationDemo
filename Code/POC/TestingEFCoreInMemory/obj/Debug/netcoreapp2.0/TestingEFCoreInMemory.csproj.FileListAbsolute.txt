@@ -1,0 +1,11 @@
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\bin\Debug\netcoreapp2.0\TestingEFCoreInMemory.deps.json
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\bin\Debug\netcoreapp2.0\TestingEFCoreInMemory.runtimeconfig.json
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\bin\Debug\netcoreapp2.0\TestingEFCoreInMemory.runtimeconfig.dev.json
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\bin\Debug\netcoreapp2.0\TestingEFCoreInMemory.dll
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.csprojResolveAssemblyReference.cache
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.csproj.CoreCompileInputs.cache
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.AssemblyInfoInputs.cache
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.AssemblyInfo.cs
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\bin\Debug\netcoreapp2.0\TestingEFCoreInMemory.pdb
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.dll
+C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\POC\TestingEFCoreInMemory\obj\Debug\netcoreapp2.0\TestingEFCoreInMemory.pdb
