@@ -23,29 +23,29 @@ namespace TimeRegistrationDemo.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-    .AddIdentityServerAuthentication(options =>
-    {
-        options.Authority = "http://localhost:5000";
-        options.RequireHttpsMetadata = false;
-        //options.ApiName = "HolidayRequests";
-    });
-            //Authorization policies to be used in the application
-            services.AddAuthorization(options =>
-            {
-                //Require a role 
-                options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
-                options.AddPolicy("RequireManagersRole", policy => policy.RequireRole("Managers"));
-                //Require a value for a certain claim
-                options.AddPolicy("RequireAdministratorsAsClaim", policy => policy.RequireClaim("role", "Administrators"));
-                // Custom Policy can be constructed with IAuthorizationRequirements
-                //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
-            });
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    //options.ApiName = "HolidayRequests";
+                });
+                //Authorization policies to be used in the application
+                services.AddAuthorization(options =>
+                {
+                    //Require a role 
+                    options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
+                    options.AddPolicy("RequireManagersRole", policy => policy.RequireRole("Managers"));
+                    //Require a value for a certain claim
+                    options.AddPolicy("RequireAdministratorsAsClaim", policy => policy.RequireClaim("role", "Administrators"));
+                    // Custom Policy can be constructed with IAuthorizationRequirements
+                    //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
+                });
 
-            //services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
-            //public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
-            //{
-            //protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-            //                                               MinimumAgeRequirement requirement)
+                //services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
+                //public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
+                //{
+                //protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+                //                                               MinimumAgeRequirement requirement)
 
 
 
@@ -89,7 +89,7 @@ namespace TimeRegistrationDemo.WebApi
                 c.OAuthClientId("mvc");
                 c.OAuthAppName("TimeRegistration Demo");
                 c.OAuthAdditionalQueryStringParams(new { scope = "HolidayRequests" });
-                
+
             });
             app.UseMvc();
         }
