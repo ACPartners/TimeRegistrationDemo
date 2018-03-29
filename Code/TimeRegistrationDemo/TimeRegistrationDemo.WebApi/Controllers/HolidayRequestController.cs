@@ -29,8 +29,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
         [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireEmployeeRole")]
         public IActionResult Post([FromBody] RegisterHolidayRequestModel holidayRequest)
         {
-            //todo get user from authentication system
-            var userId = 1;
+            var userId = Helpers.GetUserIdFromClaimsPrincipal(User);
 
             var inputDto = new RegisterHolidayRequestInputDto(
                 holidayRequest.From, holidayRequest.To,
@@ -54,8 +53,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
         [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireEmployeeRole")]
         public IActionResult Get(int? year)
         {
-            //todo get user from authentication system
-            var userId = 1;
+            var userId = Helpers.GetUserIdFromClaimsPrincipal(User);
 
             if (!year.HasValue)
                 year = DateTime.Today.Year;
@@ -64,5 +62,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
 
             return Ok(outputDto);
         }
+
+        //this.User.IsInRole("E")	This expression causes side effects and will not be evaluated	
     }
 }
