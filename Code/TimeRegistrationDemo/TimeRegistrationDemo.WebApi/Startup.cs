@@ -32,24 +32,10 @@ namespace TimeRegistrationDemo.WebApi
                 //Authorization policies to be used in the application
                 services.AddAuthorization(options =>
                 {
-                    options.AddPolicy("RequireEmployeeRole", policy => policy.RequireRole("Employee"));
-
-                    //Require a role 
-                    options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
-                    options.AddPolicy("RequireManagersRole", policy => policy.RequireRole("Managers"));
-                    //Require a value for a certain claim
-                    options.AddPolicy("RequireAdministratorsAsClaim", policy => policy.RequireClaim("role", "Administrators"));
-                    // Custom Policy can be constructed with IAuthorizationRequirements
-                    //options.AddPolicy("AtLeast21", policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
+                    options.AddPolicy("RequireEmployeeRole", policy => policy.RequireRole("E"));
+                    options.AddPolicy("RequireManagerRole", policy => policy.RequireRole("M"));
+                    options.AddPolicy("RequireSystemAdministratorrRole", policy => policy.RequireRole("A"));
                 });
-
-                //services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
-                //public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
-                //{
-                //protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                //                                               MinimumAgeRequirement requirement)
-
-
 
             services.AddSwaggerGen(c =>
             {
