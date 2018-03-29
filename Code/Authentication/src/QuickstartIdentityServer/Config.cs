@@ -5,7 +5,10 @@ using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace QuickstartIdentityServer
 {
@@ -114,52 +117,81 @@ namespace QuickstartIdentityServer
             };
         }
 
+        public static async Task<GetAllUsersForAuthenticationOutputDto> GetTimeRegistrationDemoUsers()
+        {
+            GetAllUsersForAuthenticationOutputDto users = null;
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://localhost:55229/api/user");
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsJsonAsync<GetAllUsersForAuthenticationOutputDto>();
+            }
+            return users;
+        }
+
+
         public static List<TestUser> GetUsers()
         {
-            return new List<TestUser>
-            {
+            var users = GetTimeRegistrationDemoUsers();
+            users.Wait(5000);
+
+            var testUsers = users.Result.Users.Select(x =>
                 new TestUser
                 {
-                    SubjectId = "50",
-                    Username = "jef",
-                    Password = "jef",
+                    SubjectId = x.Id.ToString(),
+                    Username = x.FirstName,
+                    Password = x.LastName,
                     Claims = new List<Claim>
                     {
-                        new Claim("name", "jef"),
-                        new Claim("role","Employee")
-                    }
-                },
-
-                new TestUser
-                {
-                    SubjectId = "1",
-                    Username = "alice",
-                    Password = "password",
-
-                    Claims = new List<Claim>
-                    {
-                        new Claim("name", "alice"),
-                        new Claim("website", "https://alice.com"),
-                        new Claim("role","Administrators")
-                    }
-                },
-                new TestUser
-                {
-                    SubjectId = "2",
-                    Username = "bob",
-                    Password = "password",
-
-                    Claims = new List<Claim>
-                    {
-                        new Claim("name", "bob"),
-                        new Claim("website", "https://bob.com"),
-                        new Claim("role","Managers")
+                        new Claim("name",x.FirstName + " " + x.LastName),
+                        new Claim("role", x.Roles.FirstOrDefault().Id)
                     }
                 }
-            };
+            ).ToList();
+
+            return testUsers;
+
+            //return new List<TestUser>
+            //{
+            //    new TestUser
+            //    {
+            //        SubjectId = "50",
+            //        Username = "jef",
+            //        Password = "jef",
+            //        Claims = new List<Claim>
+            //        {
+            //            new Claim("name", "jef"),
+            //            new Claim("role","Employee")
+            //        }
+            //    },
+
+            //    new TestUser
+            //    {
+            //        SubjectId = "1",
+            //        Username = "alice",
+            //        Password = "password",
+
+            //        Claims = new List<Claim>
+            //        {
+            //            new Claim("name", "alice"),
+            //            new Claim("website", "https://alice.com"),
+            //            new Claim("role","Administrators")
+            //        }
+            //    },
+            //    new TestUser
+            //    {
+            //        SubjectId = "2",
+            //        Username = "bob",
+            //        Password = "password",
+
+            //        Claims = new List<Claim>
+            //        {
+            //            new Claim("name", "bob"),
+            //            new Claim("website", "https://bob.com"),
+            //            new Claim("role","Managers")
+            //        }
+            //    }
+            //};
         }
     }
 }
-
-//https://medium.com/all-technology-feeds/testing-your-asp-net-core-webapi-secured-with-identityserver4-in-postman-97eee976aa16
-//https://stackoverflow.com/questions/38751616/asp-net-core-identity-get-current-user
