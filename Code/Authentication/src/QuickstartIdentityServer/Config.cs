@@ -23,13 +23,17 @@ namespace QuickstartIdentityServer
 
         public static IEnumerable<ApiResource> GetApiResources()
         {
-            var resource = new ApiResource("HolidayRequests", "Holiday Requests");
-            resource.UserClaims.Add("name");
-            resource.UserClaims.Add("role");
             return new List<ApiResource>
             {
                 new ApiResource("api1", "My API"),
-                resource
+                new ApiResource("HolidayRequests", "Holiday Requests")
+                {
+                    UserClaims = new List<string>
+                    {
+                        "name",
+                        "role"
+                    }
+                }
             };
         }
 
@@ -82,6 +86,30 @@ namespace QuickstartIdentityServer
                         "HolidayRequests",
                         "api1"
                     }
+                },
+
+                // PostMan testing
+                new Client
+                {
+                    ClientId = "postman-api",
+                    ClientName = "Postman Test Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowAccessTokensViaBrowser = true,
+                    RequireConsent = false,
+                    RedirectUris = { "https://www.getpostman.com/oauth2/callback" },
+                    PostLogoutRedirectUris = { "https://www.getpostman.com" },
+                    AllowedCorsOrigins = { "https://www.getpostman.com" },
+                    EnableLocalLogin = true,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "HolidayRequests"
+                    },
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
                 }
             };
         }
@@ -90,6 +118,18 @@ namespace QuickstartIdentityServer
         {
             return new List<TestUser>
             {
+                new TestUser
+                {
+                    SubjectId = "50",
+                    Username = "jef",
+                    Password = "jef",
+                    Claims = new List<Claim>
+                    {
+                        new Claim("name", "jef"),
+                        new Claim("role","Employee")
+                    }
+                },
+
                 new TestUser
                 {
                     SubjectId = "1",
@@ -120,3 +160,6 @@ namespace QuickstartIdentityServer
         }
     }
 }
+
+//https://medium.com/all-technology-feeds/testing-your-asp-net-core-webapi-secured-with-identityserver4-in-postman-97eee976aa16
+//https://stackoverflow.com/questions/38751616/asp-net-core-identity-get-current-user

@@ -27,11 +27,13 @@ namespace TimeRegistrationDemo.WebApi
                 {
                     options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
-                    //options.ApiName = "HolidayRequests";
+                    options.ApiName = "HolidayRequests";
                 });
                 //Authorization policies to be used in the application
                 services.AddAuthorization(options =>
                 {
+                    options.AddPolicy("RequireEmployeeRole", policy => policy.RequireRole("Employee"));
+
                     //Require a role 
                     options.AddPolicy("RequireAdministratorsRole", policy => policy.RequireRole("Administrators"));
                     options.AddPolicy("RequireManagersRole", policy => policy.RequireRole("Managers"));

@@ -24,25 +24,9 @@ namespace TimeRegistrationDemo.WebApi.Controllers
             RegisterHolidayRequestService = registerHolidayRequestService;
             ListHolidayRequestService = listHolidayRequestService;
         }
-        [HttpGet]
-        [Route("Admin")]
-        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireAdministratorsRole")]
-        public IActionResult GetAdministrator()
-        {
-            return Ok();
-        }
-        [HttpGet]
-        [Route("Manager")]
-        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireManagersRole")]
-        public IActionResult GetManager()
-        {
-            return Ok();
-        }
+
         [HttpPost]
-        // Simple requirement, a valid access token must have been presented
-        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
-        //[Authorize(Roles = "Administrators")] // A claim must be in the access token of the type "role" and value "administrator"
-        //[Authorize(Policy = "RequireAdministratorsRole")]
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireEmployeeRole")]
         public IActionResult Post([FromBody] RegisterHolidayRequestModel holidayRequest)
         {
             //todo get user from authentication system
@@ -67,6 +51,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
 
         [HttpGet]
         [Route("{year:int?}")]
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireEmployeeRole")]
         public IActionResult Get(int? year)
         {
             //todo get user from authentication system
