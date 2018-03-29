@@ -16,6 +16,7 @@ namespace TimeRegistrationDemo.Services
             //services
             services.AddTransient<IRegisterHolidayRequestService, RegisterHolidayRequestService>();
             services.AddTransient<IListHolidayRequestService, ListHolidayRequestService>();
+            services.AddTransient<IGetAllUsersForAuthenticationService, GetAllUsersForAuthenticationService>();
 
             //validators
             services.AddTransient<IValidator<HolidayRequestEntity>, HolidayRequestEntityValidator>();
