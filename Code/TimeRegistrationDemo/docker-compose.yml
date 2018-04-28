@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  timeregistrationdemo.webapi:
+    image: timeregistrationdemo.webapi
+    build:
+      context: ./TimeRegistrationDemo.WebApi
+      dockerfile: Dockerfile

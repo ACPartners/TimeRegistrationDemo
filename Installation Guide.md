@@ -16,6 +16,8 @@ Options:  to enable localdb -> select option  .NET Desktop development.
 
 Installation instruction: [link](https://docs.docker.com/docker-for-windows/install/)
 
+More info collected here [Docker](Docker.md)
+
 ## .NET Core 2.0 SDK
 
 https://www.microsoft.com/net/download/windows
