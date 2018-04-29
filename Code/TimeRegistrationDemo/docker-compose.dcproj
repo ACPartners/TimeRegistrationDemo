@@ -6,7 +6,7 @@
     <ProjectGuid>257d3cd6-eab4-40b1-a15a-af5fafa12faf</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://{ServiceIPAddress}/swagger</DockerServiceUrl>
-    <DockerServiceName>timeregistrationdemo.webapi</DockerServiceName>
+    <DockerServiceName>timeregistrationdemo</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />

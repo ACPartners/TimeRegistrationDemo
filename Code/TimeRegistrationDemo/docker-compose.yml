@@ -1,8 +1,22 @@
 version: '3'
 
 services:
-  timeregistrationdemo.webapi:
+  demodb:
+    image: microsoft/mssql-server-windows-express
+    environment:
+      sa_password: azurePASSWORD123
+      ACCEPT_EULA: "Y"
+  timeregistrationdemo:
     image: timeregistrationdemo.webapi
     build:
       context: ./TimeRegistrationDemo.WebApi
       dockerfile: Dockerfile
+    ports:
+      - "80"
+  quickstartidentityserver:
+    image: quickstartidentityserver
+    build:
+      context: ../Authentication/src/QuickstartIdentityServer
+      dockerfile: Dockerfile
+    ports:
+      - "80"

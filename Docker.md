@@ -61,7 +61,10 @@ you can run the deploy command again, docker will handle the changes like start 
 docker service ls
 docker service ps getstartedlab_web   // Send ps command to linux host
 
-
+docker ps --filter "status=running" --filter "name=dockercompose18376638957051028791_timeregistrationdemo_" --format {{.ID}} -n 1
+docker inspect --format="{{.NetworkSettings.Networks.nat.IPAddress}}"  a8088be83be1<result>
+docker ps --filter "status=running" --filter "name=dockercompose18376638957051028791_quickstartidentityserver_" --format {{.ID}} -n 1
+docker inspect --format="{{.NetworkSettings.Networks.nat.IPAddress}}" d5d7c1298c24<result>
 
 
 ## Contents of a docker file

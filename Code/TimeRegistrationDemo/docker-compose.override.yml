@@ -1,7 +1,12 @@
 version: '3'
 
 services:
-  timeregistrationdemo.webapi:
+  timeregistrationdemo:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+  quickstartidentityserver:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
