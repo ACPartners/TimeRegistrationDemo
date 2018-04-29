@@ -25,7 +25,7 @@ namespace TimeRegistrationDemo.WebApi
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "http://172.18.62.170/";
+                    options.Authority = "http://quickstartidentityserver/";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "HolidayRequests";
                 });
@@ -44,8 +44,8 @@ namespace TimeRegistrationDemo.WebApi
                 {
                     Type = "oauth2",
                     Flow = "implicit",
-                    AuthorizationUrl = "http://172.18.62.170/connect/authorize",
-                    TokenUrl = "http://172.18.62.170/connect/token",
+                    AuthorizationUrl = "http://quickstartidentityserver/connect/authorize",
+                    TokenUrl = "http://quickstartidentityserver/connect/token",
                     Scopes = new Dictionary<string, string>() { { "HolidayRequests", "Allow holiday requests" } }
                 });
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>

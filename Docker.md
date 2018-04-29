@@ -1,5 +1,9 @@
 # Docker Essentials
 
+## Docker demo steps
+
+See Configuring your machine for the demo: [Docker Demo](DockerDemo.md)
+
 ## Basics
 
 
@@ -8,6 +12,7 @@ You create a container running that image
 You compose a service
 
 ## docker database sqlexpress
+
 download the public image like this :
 docker pull microsoft/mssql-server-windows-express
 run an instance like this ( password must be complex enough, otherwise login will fail, no other warning!)

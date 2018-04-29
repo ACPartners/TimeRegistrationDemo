@@ -1,8 +1,39 @@
 version: '3'
 
 services:
-  timeregistrationdemo.webapi:
+  traefik:
+    image: stefanscherer/traefik-windows
+    container_name: traefik
+    # we need the IP of the vEthernet (HNS Internal NIC)
+    command: --api --docker --docker.endpoint=tcp://172.18.48.1:2375 --logLevel=DEBUG
+    # command: --api --docker --logLevel=DEBUG
+    ports:
+      - "8081:8081"
+      - "8080:8080"
+    volumes:
+      - .:C:/etc/traefik
+#      - C:/Users/vagrant/.docker:C:/etc/ssl
+  demodb:
+    image: microsoft/mssql-server-windows-express
+    container_name: demodb
+    environment:
+      sa_password: azurePASSWORD123
+      ACCEPT_EULA: Y
+    labels:
+      - "traefik.frontend.rule=Host:demodb.docker.localhost"
+  timeregistrationdemo:
     image: timeregistrationdemo.webapi
+    container_name: timeregistrationdemo
     build:
       context: ./TimeRegistrationDemo.WebApi
       dockerfile: Dockerfile
+    labels:
+      - "traefik.frontend.rule=Host:timeregistrationdemo.docker.localhost"
+  quickstartidentityserver:
+    image: quickstartidentityserver
+    container_name: quickstartidentityserver
+    build:
+      context: ../Authentication/src/QuickstartIdentityServer
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.frontend.rule=Host:quickstartidentityserver.docker.localhost"
