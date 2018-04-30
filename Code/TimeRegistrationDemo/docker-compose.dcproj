@@ -5,7 +5,7 @@
     <DockerTargetOS>Windows</DockerTargetOS>
     <ProjectGuid>257d3cd6-eab4-40b1-a15a-af5fafa12faf</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://{ServiceIPAddress}/swagger</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:3000/swagger</DockerServiceUrl>
     <DockerServiceName>timeregistrationdemo</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

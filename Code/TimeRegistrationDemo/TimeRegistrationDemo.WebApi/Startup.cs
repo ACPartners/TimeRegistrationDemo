@@ -22,7 +22,7 @@ namespace TimeRegistrationDemo.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var authority = "172.18.50.226";
+            var authority = "localhost:5000";
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
@@ -45,8 +45,8 @@ namespace TimeRegistrationDemo.WebApi
                 {
                     Type = "oauth2",
                     Flow = "implicit",
-                    AuthorizationUrl = $"http://{authority}//connect/authorize",
-                    TokenUrl = $"http://{authority}//connect/token",
+                    AuthorizationUrl = $"http://{authority}/connect/authorize",
+                    TokenUrl = $"http://{authority}/connect/token",
                     Scopes = new Dictionary<string, string>() { { "HolidayRequests", "Allow holiday requests" } }
                 });
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>

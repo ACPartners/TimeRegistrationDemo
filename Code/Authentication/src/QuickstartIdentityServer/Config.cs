@@ -78,7 +78,7 @@ namespace QuickstartIdentityServer
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
 
-                    RedirectUris = { "http://172.18.62.10/swagger/oauth2-redirect.html" },
+                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html" },
                     PostLogoutRedirectUris = { "" },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
@@ -121,7 +121,7 @@ namespace QuickstartIdentityServer
         {
             GetAllUsersForAuthenticationOutputDto users = null;
             var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://dockercompose18376638957051028791_timeregistrationdemo_1/api/user");
+            HttpResponseMessage response = await client.GetAsync("http://timeregistrationdemo/api/user");
             if (response.IsSuccessStatusCode)
             {
                 users = await response.Content.ReadAsJsonAsync<GetAllUsersForAuthenticationOutputDto>();
