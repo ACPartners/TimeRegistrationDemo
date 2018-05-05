@@ -1,7 +1,10 @@
 # Docker Essentials
 
+## Docker demo steps
+ 
+See Configuring your machine for the demo: [Docker Demo](DockerDemo.md)
+ 
 ## Basics
-
 
 You make a image with docker compose
 You create a container running that image
