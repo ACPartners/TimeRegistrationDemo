@@ -78,8 +78,8 @@ namespace QuickstartIdentityServer
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
 
-                    RedirectUris = { "http://localhost:5002/signin-oidc","http://localhost:55229/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { "" },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AllowedScopes =
@@ -121,7 +121,7 @@ namespace QuickstartIdentityServer
         {
             GetAllUsersForAuthenticationOutputDto users = null;
             var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:55229/api/user");
+            HttpResponseMessage response = await client.GetAsync("http://timeregistrationdemo/api/user");
             if (response.IsSuccessStatusCode)
             {
                 users = await response.Content.ReadAsJsonAsync<GetAllUsersForAuthenticationOutputDto>();

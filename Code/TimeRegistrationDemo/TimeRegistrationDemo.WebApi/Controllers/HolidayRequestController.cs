@@ -49,7 +49,7 @@ namespace TimeRegistrationDemo.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{year:int?}")]
+        [Route("{year}")]
         [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "RequireEmployeeRole")]
         public IActionResult Get(int? year)
         {

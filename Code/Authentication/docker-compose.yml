@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  quickstartidentityserver:
+    image: quickstartidentityserver
+    build:
+      context: ./src/QuickstartIdentityServer
+      dockerfile: Dockerfile
