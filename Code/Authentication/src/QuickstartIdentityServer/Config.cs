@@ -4,11 +4,18 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using Polly.Wrap;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
+using System;
+using Polly;
+using Polly.Timeout;
+using Polly.Retry;
+using Polly.Fallback;
 
 namespace QuickstartIdentityServer
 {
@@ -121,19 +128,31 @@ namespace QuickstartIdentityServer
         {
             GetAllUsersForAuthenticationOutputDto users = null;
             var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://timeregistrationdemo/api/user");
-            if (response.IsSuccessStatusCode)
+            //retry untill request succeeds
+            do
             {
-                users = await response.Content.ReadAsJsonAsync<GetAllUsersForAuthenticationOutputDto>();
-            }
+                HttpResponseMessage response = await client.GetAsync("http://timeregistrationdemo/api/user");
+                if (response.IsSuccessStatusCode)
+                {
+                    users = await response.Content.ReadAsJsonAsync<GetAllUsersForAuthenticationOutputDto>();
+                }else
+                {
+                    Thread.Sleep(5000);
+                }
+
+            } while (users == null);
             return users;
         }
 
 
         public static List<TestUser> GetUsers()
         {
+            //Retry untill other side return users successfull,
+            //After 3 tries, just return John Doe...
+            //Fallback policy -> create John Doe
+            PolicyWrap<List<TestUser>> policy = CreateWaitPolicy();
             var users = GetTimeRegistrationDemoUsers();
-            users.Wait(5000);
+            users.Wait(50000);
 
             var testUsers = users.Result.Users.Select(x =>
                 new TestUser
@@ -192,6 +211,47 @@ namespace QuickstartIdentityServer
             //        }
             //    }
             //};
+        }
+
+        private static PolicyWrap<List<TestUser>> CreateWaitPolicy()
+        {
+            var fallBackValue = new List<TestUser>();
+            fallBackValue.Add(new TestUser { Username = "John", Password = "Doe", IsActive = true
+        });
+            int retries = 0;
+            // Define our timeout policy: time out after 50 seconds.  We will use the pessimistic timeout strategy, which forces a timeout - even when the underlying delegate doesn't support it.
+            var timeoutPolicy = Policy
+                .Timeout(TimeSpan.FromSeconds(50), TimeoutStrategy.Pessimistic);
+
+            // Define our waitAndRetry policy: keep retrying with 4 second gaps.  This is (intentionally) too long: to demonstrate that the timeout policy will time out on this before waiting for the retry.
+            RetryPolicy waitAndRetryPolicy = Policy
+                .Handle<Exception>()
+                .WaitAndRetryForever(
+                attempt => TimeSpan.FromSeconds(4),
+                (exception, calculatedWaitDuration) =>
+                {
+                    Console.WriteLine(".Log,then retry: " + exception.Message);
+                    retries++;
+                });
+
+            // Define a fallback policy: provide a nice substitute message to the user, if we found the call was rejected due to the timeout policy.
+            FallbackPolicy<List<TestUser>> fallbackForTimeout = Policy<List<TestUser>>
+                .Handle<TimeoutRejectedException>()
+                .Fallback(
+                    fallbackValue: fallBackValue,
+                    onFallback: b =>
+                    {
+                        //Handle Exception information...
+                        Console.WriteLine(b.Exception.Message);
+                        return ;
+                    }
+                );
+
+ 
+            // Compared to previous demo08: here we use *instance* wrap syntax, to wrap all in one go.
+            PolicyWrap<List<TestUser>> policyWrap = fallbackForTimeout.Wrap(timeoutPolicy).Wrap(waitAndRetryPolicy);
+
+            return policyWrap;
         }
     }
 }

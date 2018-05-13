@@ -21,4 +21,4 @@ services:
       context: ../Authentication/src/QuickstartIdentityServer
       dockerfile: Dockerfile
     ports:
-      - "5000:80"
+      - "5000:5000"

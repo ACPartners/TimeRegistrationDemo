@@ -14,7 +14,12 @@ namespace QuickstartIdentityServer
             services.AddMvc();
 
             // configure identity server with in-memory stores, keys, clients and scopes
-            services.AddIdentityServer()
+            services.AddIdentityServer(x =>
+            {
+                x.IssuerUri = "quickstartidentityserver:5000";
+                
+            })
+                
                 .AddDeveloperSigningCredential()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
