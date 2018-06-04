@@ -1,13 +1,15 @@
-version: '3'
-
+version: '3.4'
+# I commented demodb out and created it outside the project to not have the database reset each time.
+# Sometimes the delay of rebuilding is not wanted.
+# Check the documentation in Docker.md file on how to start the container for the database.
 services:
-  demodb:
-    image: microsoft/mssql-server-windows-express
-    environment:
-      sa_password: azurePASSWORD123
-      ACCEPT_EULA: Y
-    ports:
-      - "1433:1433"
+ # demodb:
+ #   image: microsoft/mssql-server-windows-express
+ #   environment:
+ #     sa_password: azurePASSWORD123
+ #     ACCEPT_EULA: Y
+ #   ports:
+ #     - "1433:1433"
   timeregistrationdemo:
     image: timeregistrationdemo.webapi
     build:
