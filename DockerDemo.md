@@ -34,4 +34,6 @@ When running the migrations command to update the database, the server is localh
 You could set up an reverse proxy to let demodb point to localhost to avoid the need to change this.
   
 
- 
+ Starting command for  the containers:
+ docker-compose  -f "C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\TimeRegistrationDemo\docker-compose.yml" -f "C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\TimeRegistrationDemo\docker-compose.override.yml" -f "C:\Users\Stijn\Source\Repos\TimeRegistrationDemo\Code\TimeRegistrationDemo\obj\Docker\docker-compose.vs.debug.g.yml" -p dockercompose18376638957051028791 up -d
+

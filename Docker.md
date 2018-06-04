@@ -14,7 +14,7 @@ You compose a service
 download the public image like this :
 docker pull microsoft/mssql-server-windows-express
 run an instance like this ( password must be complex enough, otherwise login will fail, no other warning!)
-docker run -d -p 1433:1433 -e sa_password=azurePASSWORD123 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-express
+docker run --name demodb -d -p 1433:1433 -e sa_password=azurePASSWORD123 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-express
 connect to the instance like this
 docker exec -it <DOCKER_CONTAINER_ID> sqlcmd
 or

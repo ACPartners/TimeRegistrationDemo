@@ -22,11 +22,11 @@ namespace TimeRegistrationDemo.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var authority = "localhost:5000";
+            var authority = "quickstartidentityserver";
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = $"http://{authority}/";
+                    options.Authority = $"http://quickstartidentityserver:5000";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "HolidayRequests";
                 });
@@ -44,9 +44,9 @@ namespace TimeRegistrationDemo.WebApi
                 c.AddSecurityDefinition("Bearer", new OAuth2Scheme
                 {
                     Type = "oauth2",
-                    Flow = "implicit",
-                    AuthorizationUrl = $"http://{authority}/connect/authorize",
-                    TokenUrl = $"http://{authority}/connect/token",
+                    Flow = "implicit",                    
+                    AuthorizationUrl = $"http://localhost:5000/connect/authorize",
+                    TokenUrl = $"http://localhost:5000/connect/token",
                     Scopes = new Dictionary<string, string>() { { "HolidayRequests", "Allow holiday requests" } }
                 });
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
@@ -66,6 +66,13 @@ namespace TimeRegistrationDemo.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.Use((context, next) => {
+            //    //Before everything else, make sure the hostname is always the same:
+            //    var request = context.Request;
+            //    request.Host = new Microsoft.AspNetCore.Http.HostString("http://quickstartidentityserver");
+
+            //    return next();
+            //});
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -81,6 +88,7 @@ namespace TimeRegistrationDemo.WebApi
 
             });
             app.UseMvc();
+            app.SeedData();
         }
     }
 }
