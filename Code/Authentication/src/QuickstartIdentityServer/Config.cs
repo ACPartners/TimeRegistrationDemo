@@ -83,9 +83,13 @@ namespace QuickstartIdentityServer
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedGrantTypes = GrantTypes.Hybrid,
 
-                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html" },
+                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html", "http://localhost/TimeRegistrationClient" },
                     PostLogoutRedirectUris = { "" },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
