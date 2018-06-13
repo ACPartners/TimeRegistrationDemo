@@ -78,18 +78,18 @@ namespace QuickstartIdentityServer
                     AllowedScopes = { "HolidayRequests" }
                 },
 
-                // OpenID Connect implicit flow client (MVC)
+                // OpenID Connect implicit flow client (wPF Client)
                 new Client
                 {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
+                    ClientId = "WPF",
+                    ClientName = "WPF Client",
                     ClientSecrets =
                     {
-                        new Secret("secret".Sha256())
+                        new Secret("secret2".Sha256())
                     },
                     AllowedGrantTypes = GrantTypes.Hybrid,
 
-                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html", "http://localhost/TimeRegistrationClient" },
+                    RedirectUris = { "http://localhost/TimeRegistrationClient" },
                     PostLogoutRedirectUris = { "" },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
@@ -101,7 +101,25 @@ namespace QuickstartIdentityServer
                         "api1"
                     }
                 },
+                // OpenID Connect Implicit flow client (Swagger page)
+                new Client
+                {
+                    ClientId = "demo",
+                    ClientName = "TimeRegistration Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
 
+                    RedirectUris = { "http://localhost:3000/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { "" },
+                    AllowAccessTokensViaBrowser = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "HolidayRequests",
+                        "api1"
+                    }
+                },
                 // PostMan testing
                 new Client
                 {

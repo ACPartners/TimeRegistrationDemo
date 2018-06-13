@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,8 +33,8 @@ namespace TimeRegistration.WPFClient
             var options = new OidcClientOptions
             {
                 Authority = "http://localhost:5000",
-                ClientId = "mvc",
-                ClientSecret = "secret",
+                ClientId = "WPF",
+                ClientSecret = "secret2",
                 RedirectUri = "http://localhost/TimeRegistrationClient",
                 Scope = "openid profile HolidayRequests",
                 ResponseMode = OidcClientOptions.AuthorizeResponseMode.FormPost,
@@ -62,6 +63,24 @@ namespace TimeRegistration.WPFClient
 
             proxy.AccessToken = _accessToken;
             await proxy.ApiHolidayRequestPostAsync(request);
+
+            await DoSlackPost(requestDate);
+
+        }
+
+        private static async Task DoSlackPost(DateTime? requestDate)
+        {
+            var slackPost = new HttpClient();
+            //https://hooks.slack.com/services/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
+            slackPost.BaseAddress = new Uri("https://hooks.slack.com/services/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");
+            var content = new StringContent($"{{ 'text':'Holiday request in demo for {requestDate}' }}");
+
+            await slackPost.PostAsync("", content);
+        }
+
+        private async void slackPost_Click(object sender, RoutedEventArgs e)
+        {
+            await DoSlackPost(DateTime.Now);
         }
     }
 }
