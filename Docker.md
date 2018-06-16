@@ -1,16 +1,25 @@
 # Docker Essentials
 
 ## Docker demo steps
- 
+
 See Configuring your machine for the demo: [Docker Demo](DockerDemo.md)
- 
+
 ## Basics
 
 You make a image with docker compose
 You create a container running that image
 You compose a service
 
+### using partial Id for referencing  images and containers
+
+example:
+REPOSITORY                               TAG                 IMAGE ID            CREATED             SIZE
+quickstartidentityserver                 dev                 17477555f987        11 minutes ago      509MB
+
+Getting info :  docker image inspect  17
+
 ## docker database sqlexpress
+
 download the public image like this :
 docker pull microsoft/mssql-server-windows-express
 run an instance like this ( password must be complex enough, otherwise login will fail, no other warning!)
@@ -27,21 +36,30 @@ use it in SSMS
 ## Docker commands
 
 ### List Docker CLI commands
+
 docker
 docker container --help
 
 ### Display Docker version and info
+
 docker --version
 docker version
 docker info
 
 ### Execute Docker image
+
 docker run hello-world
 
 ### List Docker images
+
 docker image ls
 
+### Remove images
+
+docker image rm [container-id]
+
 ### List Docker containers (running, all, all in quiet mode)
+
 docker container ls
 docker container ls --all
 docker container ls -aq
@@ -54,24 +72,20 @@ docker stack rm getstarted  // stop the service
 
 docker swarm leave --force  // take down the swarm
 
-
 If you change the docker.compose.yml file and save,
 you can run the deploy command again, docker will handle the changes like start up more replica's if requested.
-
 
 ### work with services
 
 docker service ls
 docker service ps getstartedlab_web   // Send ps command to linux host
 
-
 docker ps --filter "status=running" --filter "name=demodb" --format {{.ID}} -n 1
 docker inspect --format="{{.NetworkSettings.Networks.nat.IPAddress}}" d5d
 
-
 ## Contents of a docker file
 
-WORKDIR 
+WORKDIR
 ADD
 RUN
 EXPOSE
@@ -80,26 +94,32 @@ CMD
 ## Example docker file
 
 ### Use an official Python runtime as a parent image
+
 FROM python:2.7-slim
 
 ### Set the working directory to /app
+
 WORKDIR /app
 
 ### Copy the current directory contents into the container at /app
+
 ADD . /app
 
 ### Install any needed packages specified in requirements.txt
+
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 ### Make port 80 available to the world outside this container
+
 EXPOSE 80
 
 ### Define environment variable
+
 ENV NAME World
 
 ### Run app.py when the container launches
-CMD ["python", "app.py"]
 
+CMD ["python", "app.py"]
 
 ## Componse the service with a docker-compose.yml
 
@@ -120,5 +140,6 @@ services:
       - "80:80"
     networks:
       - webnet
+
 networks:
   webnet:
