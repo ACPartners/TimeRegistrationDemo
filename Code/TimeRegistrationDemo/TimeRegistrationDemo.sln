@@ -19,6 +19,10 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickstartIdentityServer", "..\Authentication\src\QuickstartIdentityServer\QuickstartIdentityServer.csproj", "{3C211E17-AD6E-4A46-B21C-476EC0A17EE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2847F06B-5C4D-4975-9205-0861B6FB3E5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRegistrationDemo.Services.Test", "..\TimeRegistrationDemo.Services.Test\TimeRegistrationDemo.Services.Test.csproj", "{8822DE35-21BA-4A3B-9F18-0674079ACCA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,12 +57,17 @@ Global
 		{3C211E17-AD6E-4A46-B21C-476EC0A17EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C211E17-AD6E-4A46-B21C-476EC0A17EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C211E17-AD6E-4A46-B21C-476EC0A17EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8822DE35-21BA-4A3B-9F18-0674079ACCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8822DE35-21BA-4A3B-9F18-0674079ACCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8822DE35-21BA-4A3B-9F18-0674079ACCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8822DE35-21BA-4A3B-9F18-0674079ACCA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{875A8218-44E4-4373-9EBC-B9C0CAC90203} = {09B5140E-F11E-4AF5-9341-EFAC14FDABA5}
+		{8822DE35-21BA-4A3B-9F18-0674079ACCA0} = {2847F06B-5C4D-4975-9205-0861B6FB3E5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72E85C12-DEBA-4075-BE82-20132B9A0900}
