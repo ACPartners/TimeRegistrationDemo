@@ -10,10 +10,11 @@ See [Installation Guide](Installation%20Guide.md)
 ## Design goals 2018
 
 ### Technologies
+
  - C#
  - Use .NET Core
  - Use ASPNETCore
- - Use Docker as hoster
+ - Use [Docker](Docker.md) as hoster
  - EntityFramework (Code First + migrations)
  - Sql server 2016 (localdb and real server)
  - Visual Studio 2017 Community Edition
@@ -23,6 +24,7 @@ See [Installation Guide](Installation%20Guide.md)
  - Mapping libraries (AutoMapper)
 
 ### Design methodologies
+
  - [CQRS](CQRS%20Basics.md)
  - DDD
  - REST API

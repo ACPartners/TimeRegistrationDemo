@@ -82,7 +82,7 @@ namespace TimeRegistrationDemo.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.OAuthClientId("mvc");
+                c.OAuthClientId("demo");
                 c.OAuthAppName("TimeRegistration Demo");
                 c.OAuthAdditionalQueryStringParams(new { scope = "HolidayRequests" });
 

@@ -16,7 +16,7 @@ namespace QuickstartIdentityServer
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer(x =>
             {
-                x.IssuerUri = "quickstartidentityserver:5000";
+                x.IssuerUri = "http://localhost:5000";
                 
             })
                 
